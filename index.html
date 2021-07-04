@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Código Limpo (Clean Code) | balta.io</title>
+
+    <meta name="description"
+        content="Clean Code ou código limpo se refere a um conjunto de boas práticas na escrita de software que você pode aplicar para obter uma maior legibilidade e manutenabilidade do seu código.">
+    <meta name="keywords" content="clean code, cleancode, codigo limpo">
+    <meta name="author" content="balta.io">
+
+    <!--Twitter Share-->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="https://codigo-limpo.net/" />
+    <meta name="twitter:creator" content="@balta_io" />
+    <meta name="twitter:title" content="Código Limpo (Clean Code)" />
+    <meta name="twitter:description"
+        content="Clean Code ou código limpo se refere a um conjunto de boas práticas na escrita de software que você pode aplicar para obter uma maior legibilidade e manutenabilidade do seu código." />
+    <meta name="twitter:image"
+        content="https://baltaio.blob.core.windows.net/static/images/articles/clean-code_share.jpg" />
+
+    <!--Facebook/LinkedIn Share-->
+    <meta property="og:url" content="https://codigo-limpo.net/" />
+    <meta property="og:title" content="Código Limpo (Clean Code)" />
+    <meta property="og:description"
+        content="Clean Code ou código limpo se refere a um conjunto de boas práticas na escrita de software que você pode aplicar para obter uma maior legibilidade e manutenabilidade do seu código." />
+    <meta property="og:image"
+        content="https://baltaio.blob.core.windows.net/static/images/articles/clean-code_share.jpg" />
+
+    <link rel="icon" type="image/x-icon"
+        href="https://baltaio.blob.core.windows.net/static/images/icons/favicon.ico?v1" />
+    <link rel="shortcut icon" type="image/x-icon"
+        href="https://baltaio.blob.core.windows.net/static/images/icons/favicon.ico?v1" />
+    <link rel="stylesheet" href="https://baltaio.blob.core.windows.net/static/css/uikit.balta.dark.css?v1" />
+
+    <link rel="stylesheet" href="/css/site.css?v=Xf9wDwoEu67xOdNRvXvQdyfFF6GZqkqgMYikpsnQG3o">
+</head>
+
+<body>
+    <main>
+        <div class="uk-container uk-margin-large-top">
+            <div class="uk-flex uk-flex-between" uk-grid>
+                <div class="uk-width-1-2@m">
+                    <article>
+                        <img src="https://baltaio.blob.core.windows.net/static/images/dark/balta-logo.svg" width="150"
+                            alt="Código Limpo (Clean Code)" />
+                        <br>
+
+
+                        <h1>Código Limpo (Clean Code)</h1>
+                        <p>Aprenda ou consolide todos os conhecimentos necess&#xE1;rios para trabalhar com C# e .NET!
+                        </p>
+
+                        <p>Clean Code ou código limpo se refere a um conjunto de boas práticas na escrita de software
+                            que você pode aplicar para obter uma maior legibilidade e manutenabilidade do seu código.
+                        </p>
+                        <p><img src="https://baltaio.blob.core.windows.net/static/images/articles/clean-code_share.jpg"
+                                alt="Clean Code" title="Clean Code" /></p>
+                        <h2 id="índice">Índice</h2>
+                        <ul>
+                            <li><a href="#%C3%ADndice">Índice</a></li>
+                            <li><a href="#o-que-%C3%A9-o-clean-code">O que é o Clean Code?</a></li>
+                            <li><a href="#regras-gerais">Regras gerais</a>
+                                <ul>
+                                    <li><a href="#siga-as-conven%C3%A7%C3%B5es">Siga as convenções</a></li>
+                                    <li><a href="#kiss">KISS</a></li>
+                                    <li><a href="#regra-do-escoteiro">Regra do escoteiro</a></li>
+                                    <li><a href="#causa-raiz">Causa raiz</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#regras-de-design">Regras de design</a>
+                                <ul>
+                                    <li><a href="#mantenha-dados-de-configura%C3%A7%C3%A3o-em-alto-n%C3%ADvel">Mantenha
+                                            dados de configuração em alto nível</a>
+                                        <ul>
+                                            <li><a href="#exemplo">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#polimorfismo-no-lugar-de-ifs">Polimorfismo no lugar de IFs</a>
+                                        <ul>
+                                            <li><a href="#exemplo-1">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#mult-thread">Mult-thread</a>
+                                        <ul>
+                                            <li><a href="#exemplo-2">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#separe-os-c%C3%B3digos-mult-thread">Separe os códigos mult-thread</a>
+                                        <ul>
+                                            <li><a href="#exemplo-3">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#utilize-async-como-sufixo">Utilize Async como sufixo</a></li>
+                                    <li><a href="#evite-configura%C3%A7%C3%B5es-desnecess%C3%A1rias">Evite configurações
+                                            desnecessárias</a>
+                                        <ul>
+                                            <li><a href="#exemplo-4">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#utilize-inje%C3%A7%C3%A3o-de-depend%C3%AAncia">Utilize injeção de
+                                            dependência</a>
+                                        <ul>
+                                            <li><a href="#exemplo-5">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#lei-de-demeter">Lei de Demeter</a>
+                                        <ul>
+                                            <li><a href="#exemplo-6">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#regras-sobre-entendimento-do-c%C3%B3digo">Regras sobre entendimento do
+                                    código</a>
+                                <ul>
+                                    <li><a href="#seja-consistente">Seja consistente</a>
+                                        <ul>
+                                            <li><a href="#exemplo-7">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#utilize-vari%C3%A1veis-concisas">Utilize variáveis concisas</a>
+                                        <ul>
+                                            <li><a href="#exemplo-8">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#obsess%C3%A3o-primitiva">Obsessão primitiva</a>
+                                        <ul>
+                                            <li><a href="#exemplo-9">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#evite-depend%C3%AAncias-l%C3%B3gicas">Evite dependências lógicas</a>
+                                        <ul>
+                                            <li><a href="#exemplo-10">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#evite-condicionais-negativas">Evite condicionais negativas</a>
+                                        <ul>
+                                            <li><a href="#exemplo-11">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#regras-de-nomes">Regras de nomes</a>
+                                <ul>
+                                    <li><a href="#escolha-nomes-descritivos">Escolha nomes descritivos</a>
+                                        <ul>
+                                            <li><a href="#exemplo-12">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#fa%C3%A7a-distin%C3%A7%C3%B5es-significantes">Faça distinções
+                                            significantes</a>
+                                        <ul>
+                                            <li><a href="#exemplo-13">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#utilize-nomes-pronunci%C3%A1veis-e-busc%C3%A1veis">Utilize nomes
+                                            pronunciáveis e buscáveis</a>
+                                        <ul>
+                                            <li><a href="#exemplo-14">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#evite-uso-excessivo-de-strings">Evite uso excessivo de strings</a>
+                                        <ul>
+                                            <li><a href="#exemplo-15">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#n%C3%A3o-use-prefixo-ou-caracteres-especiais">Não use prefixo ou
+                                            caracteres especiais</a>
+                                        <ul>
+                                            <li><a href="#exemplo-16">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#regras-para-fun%C3%A7%C3%B5es-ou-m%C3%A9todos">Regras para funções ou
+                                    métodos</a>
+                                <ul>
+                                    <li><a href="#pequenas-e-com-apenas-um-objetivo">Pequenas e com apenas um
+                                            objetivo</a>
+                                        <ul>
+                                            <li><a href="#exemplo-17">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#utilize-nomes-descritivos">Utilize nomes descritivos</a>
+                                        <ul>
+                                            <li><a href="#exemplo-18">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#opte-por-poucos-par%C3%A2metros">Opte por poucos parâmetros</a>
+                                        <ul>
+                                            <li><a href="#exemplo-19">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#cuidado-com-efeitos-colaterais">Cuidado com efeitos colaterais</a>
+                                        <ul>
+                                            <li><a href="#exemplo-20">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#n%C3%A3o-tome-decis%C3%B5es-desnecess%C3%A1rias">Não tome decisões
+                                            desnecessárias</a>
+                                        <ul>
+                                            <li><a href="#exemplo-21">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#regras-de-coment%C3%A1rios">Regras de comentários</a>
+                                <ul>
+                                    <li><a href="#um-c%C3%B3digo-bom-%C3%A9-expressivo">Um código bom é expressivo</a>
+                                    </li>
+                                    <li><a href="#n%C3%A3o-seja-redundante">Não seja redundante</a>
+                                        <ul>
+                                            <li><a href="#exemplo-22">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#n%C3%A3o-feche-os-coment%C3%A1rios">Não feche os comentários</a>
+                                        <ul>
+                                            <li><a href="#exemplo-23">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#evite-c%C3%B3digos-comentados">Evite códigos comentados</a>
+                                        <ul>
+                                            <li><a href="#exemplo-24">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#inte%C3%A7%C3%A3o">Inteção</a>
+                                        <ul>
+                                            <li><a href="#exemplo-25">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#esclarecimento">Esclarecimento</a>
+                                        <ul>
+                                            <li><a href="#exemplo-26">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#consequ%C3%AAncias">Consequências</a>
+                                        <ul>
+                                            <li><a href="#exemplo-27">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#estrutura-do-c%C3%B3digo">Estrutura do código</a>
+                                <ul>
+                                    <li><a href="#separe-conceitos-verticalmente">Separe conceitos verticalmente</a>
+                                        <ul>
+                                            <li><a href="#exemplo-28">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#declare-vari%C3%A1veis-pr%C3%B3ximas-de-seu-uso">Declare variáveis
+                                            próximas de seu uso</a>
+                                        <ul>
+                                            <li><a href="#exemplo-29">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#agrupe-funcionalidades-similares">Agrupe funcionalidades similares</a>
+                                        <ul>
+                                            <li><a href="#exemplo-30">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#declare-fun%C3%A7%C3%B5es-de-cima-para-baixo">Declare funções de cima
+                                            para baixo</a>
+                                        <ul>
+                                            <li><a href="#exemplo-31">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#mantenha-poucas-e-curtas-linhas">Mantenha poucas e curtas linhas</a>
+                                        <ul>
+                                            <li><a href="#exemplo-32">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#n%C3%A3o-use-alinhamento-horizontal">Não use alinhamento
+                                            horizontal</a>
+                                        <ul>
+                                            <li><a href="#exemplo-33">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#use-os-espa%C3%A7os-em-branco-corretamente">Use os espaços em branco
+                                            corretamente</a>
+                                        <ul>
+                                            <li><a href="#exemplo-34">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#n%C3%A3o-quebre-a-identa%C3%A7%C3%A3o">Não quebre a identação</a>
+                                        <ul>
+                                            <li><a href="#exemplo-35">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#objetos-e-estruturas">Objetos e estruturas</a>
+                                <ul>
+                                    <li><a href="#esconda-estruturas-internas">Esconda estruturas internas</a>
+                                        <ul>
+                                            <li><a href="#exemplo-36">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#opte-por-estrutura-de-dados">Opte por estrutura de dados</a>
+                                        <ul>
+                                            <li><a href="#exemplo-37">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#evite-usar-dados-e-objetos-juntos">Evite usar dados e objetos
+                                            juntos</a></li>
+                                    <li><a href="#instanciar-poucas-vari%C3%A1veis">Instanciar poucas variáveis</a>
+                                        <ul>
+                                            <li><a href="#exemplo-38">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#classe-base-n%C3%A3o-deve-saber-sobre-suas-derivadas">Classe base não
+                                            deve saber sobre suas derivadas</a>
+                                        <ul>
+                                            <li><a href="#exemplo-39">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#mais-m%C3%A9todos-menos-tomadas-de-decis%C3%A3o">Mais métodos, menos
+                                            tomadas de decisão</a>
+                                        <ul>
+                                            <li><a href="#exemplo-40">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#evite-m%C3%A9todos-est%C3%A1ticos">Evite métodos estáticos</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#testes">Testes</a>
+                                <ul>
+                                    <li><a href="#um-assert-por-teste">Um assert por teste</a></li>
+                                    <li><a href="#leg%C3%ADvel">Legível</a>
+                                        <ul>
+                                            <li><a href="#exemplo-41">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#r%C3%A1pido">Rápido</a>
+                                        <ul>
+                                            <li><a href="#exemplo-42">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#independentes">Independentes</a>
+                                        <ul>
+                                            <li><a href="#exemplo-43">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#repetit%C3%ADvel">Repetitível</a>
+                                        <ul>
+                                            <li><a href="#exemplo-44">Exemplo</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#code-smells">Code smells</a>
+                                <ul>
+                                    <li><a href="#rigidez">Rigidez</a></li>
+                                    <li><a href="#fragilidade">Fragilidade</a></li>
+                                    <li><a href="#imobilidade">Imobilidade</a></li>
+                                    <li><a href="#complexidade-desnecess%C3%A1ria">Complexidade desnecessária</a></li>
+                                    <li><a href="#repeti%C3%A7%C3%A3o-desnecess%C3%A1ria">Repetição desnecessária</a>
+                                    </li>
+                                    <li><a href="#opacidade">Opacidade</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#fontes">Fontes</a></li>
+                        </ul>
+                        <h2 id="o-que-é-o-clean-code">O que é o Clean Code?</h2>
+                        <p>Por que estamos falando tanto sobre código limpo (Clean Code) e por que isto é tão importante
+                            para nós? De fato a manutenção de um software é tão importante quanto sua construção.</p>
+                        <p>Como relatado por Robert C. Martin em seu livro clássico, <em>Clean Code</em>, um Best Seller
+                            da nossa área, algumas práticas e visões são importantíssimas para mantermos a <em>vida</em>
+                            do nosso software.</p>
+                        <blockquote>
+                            <p><strong>IMPORTANTE</strong> Este artigo não descarta a leitura do livro, que é muito mais
+                                denso e profundo sobre o assunto.</p>
+                        </blockquote>
+                        <p>As empresas investem milhões em softwares todo ano, mas com tantas mudanças no time e nas
+                            tecnologias, como fazer este investimento durar? Como garantir uma boa manutenção,
+                            durabilidade, vida ao software? Segundo Uncle Bob, as práticas abaixo são o caminho.</p>
+                        <h2 id="regras-gerais">Regras gerais</h2>
+                        <h3 id="siga-as-convenções">Siga as convenções</h3>
+                        <p>Se você começou agora em um projeto ou acabaram de definir suas convenções, siga-as! Se
+                            utilizam por exemplo constantes em maiúsculo, enumeradores com <strong>E</strong> como
+                            prefixo, não importa! Siga sempre os padrões do projeto.</p>
+                        <h3 id="kiss">KISS</h3>
+                        <p>Mantenha as coisas simples! Este conceito vem até de outro livro, e particularmente acho que
+                            é a base de uma boa solução. Normalmente tendemos a complicar as coisas que poderiam ser
+                            muito mais simples.</p>
+                        <p>Então, Keep It Stupid Simple (Mantenha isto estupidamente simples - KISS)!</p>
+                        <h3 id="regra-do-escoteiro">Regra do escoteiro</h3>
+                        <p>&quot;Deixe sempre o acamapamento mais limpo do que você encontrou!&quot; O mesmo vale para
+                            nosso código. Devolva (Check in) sempre o código melhor do que você o obteve. Se todo
+                            desenvolvedor no time tiver esta visão, e devolver um pedacinho de código melhor do que
+                            estava antes, em pouco temos teremos uma grande mudança.</p>
+                        <h3 id="causa-raiz">Causa raiz</h3>
+                        <p>Sempre procure a causa raiz do problema, nunca resolva as coisas superficialmente. No
+                            dia-a-dia, na correria, tendemos a corrigir os problemas superficialmente e não adentrar
+                            neles, o que muitas vezes causa o re-trabalho!</p>
+                        <p>Tente sempre procurar a causa raiz e resolver assim o problema de uma vez por todas!</p>
+                        <h2 id="regras-de-design">Regras de design</h2>
+                        <h3 id="mantenha-dados-de-configuração-em-alto-nível">Mantenha dados de configuração em alto
+                            nível</h3>
+                        <p>Algo que toda aplicação tem são suas configurações, como as conhecidas
+                            <strong>ConnectionStrings</strong>. Tente sempre deixar estas configurações ou o
+                            <em>parse</em> delas em um nível mais alto possível.
+                        </p>
+                        <p>Evite sobrescrever configurações em métodos dentro de <strong>Controllers</strong> ou algo do
+                            tipo. Se possível, mantenha esta passagem no método principal, no início da aplicação e não
+                            mexa mais nisto!</p>
+                        <h4 id="exemplo">Exemplo</h4>
+                        <p>Em diversas aplicações que trabalho, crio sempre uma classe <strong>Settings</strong> no
+                            projeto base e depois no <strong>Startup</strong> das aplicações populo ela com as
+                            configurações. Isto garante que não teremos estas configurações sendo escritas em todo lugar
+                            e também que não precisaremos do <strong>IConfiguration</strong> que fica no
+                            <strong>ASP.NET</strong> em projetos que não são Web.
+                        </p>
+                        <p><small><strong>MeuProjeto.Domain</strong></small></p>
+                        <pre><code class="language-csharp">public static class Settings {
+    public static string ConnectionString { get; set; }
+}
+</code></pre>
+                        <p><small><strong>MeuProjeto.Api</strong></small></p>
+                        <pre><code class="language-csharp">public Startup(IConfiguration configuration)
+{
+    Configuration = configuration;
+    Settings.ConnectionString = Configuration.GetConnectionString(&quot;connectionString&quot;);
+}
+</code></pre>
+                        <p><small><strong>MeuProjeto.Infra</strong></small></p>
+                        <pre><code class="language-csharp">using(var connection = new SqlConnection(Settings.ConnectionString)) {
+    ...
+}
+</code></pre>
+                        <h3 id="polimorfismo-no-lugar-de-ifs">Polimorfismo no lugar de IFs</h3>
+                        <p>Um <strong>IF</strong> ou condicional, como o nome diz, traz uma tomada de decisão a nossa
+                            aplicação, o que implica no aumento da complexidade da mesma. No geral devemos evitar o uso
+                            excessivo destes.</p>
+                        <p>Nestes cenários, opte sempre pelo <a
+                                href="https://balta.io/blog/orientacao-a-objetos">polimorfismo</a> ao invés de tomar
+                            decisão em todo método que cria.</p>
+                        <h4 id="exemplo-1">Exemplo</h4>
+                        <p>Vamos tomar como base uma classe <strong>Pagamento</strong>, onde temos pagamento via Boleto
+                            ou Cartão de Crédito, porém nos pagamentos via Boleto, caso o dia do vencimento seja sábado
+                            ou domingo (Final de semana), o mesmo pode ser pago no próximo dia útil.</p>
+                        <blockquote>
+                            <p><strong>IMPORTANTE</strong> Esta regra não está 100% correta ou eficiente, é apenas uma
+                                demonstração</p>
+                        </blockquote>
+                        <pre><code class="language-csharp">public class Pagamento {
+    public bool PodeSerPago() {
+        if(tipo == ETipoPagamento.Boleto)
+        {
+            if(vencimento.Day != IsWeekend())
+                return true;
+        }
+
+        if(tipo == ETipoPagamento.CartaoCredito)
+            ...
+    }
+}
+</code></pre>
+                        <p>Note que temos duas tomadas de decisão dentro do método <strong>PodeSerPago</strong>, onde a
+                            primeira se refere apenas a pagamentos do tipo Boleto. Caso hajam mais formas de pagamento
+                            futuramente, como tratariamos este código? Encheriamos de <strong>IF</strong>?</p>
+                        <p>A solução mais plausível é derivar da classe base <strong>Pagamento</strong> criando o
+                            <strong>PagamentoBoleto</strong> que sobrescreve o método <strong>PodeSerPago</strong>,
+                            dando uma nova funcionalidade a ele.
+                        </p>
+                        <pre><code class="language-csharp">public class Pagamento {
+    public virtual bool PodeSerPago() {
+        ...
+    }
+}
+
+public class PagamentoBoleto : Pagamento {
+    public override bool PodeSerPago() {
+        if(vencimento.Day != IsWeekend())
+            return true;
+    }
+}
+</code></pre>
+                        <h3 id="mult-thread">Mult-thread</h3>
+                        <p>Sempre que necessário utilize processamento em Threads separadas. Já temos suporte a
+                            multi-threads e paralelismo no C# faz um bom tempo e o próprio Async/Await já ajudam nisso.
+                        </p>
+                        <h4 id="exemplo-2">Exemplo</h4>
+                        <p><small><strong>Sem async/await</strong></small></p>
+                        <pre><code class="language-csharp">[HttpGet(&quot;cursos&quot;)]
+public IActionResult Index([FromServices] IContentRepository repository)
+{
+    ViewBag.Courses = repository.GetContents(EContentType.Course);
+    return View();
+}
+</code></pre>
+                        <p><small><strong>Com async/await</strong></small></p>
+                        <pre><code class="language-csharp">[HttpGet(&quot;cursos&quot;)]
+public async Task&lt;IActionResult&gt; Index([FromServices] IContentRepository repository)
+{
+    ViewBag.Courses = await repository.GetContentsAsync(EContentType.Course);
+    return View();
+}
+</code></pre>
+                        <h3 id="separe-os-códigos-mult-thread">Separe os códigos mult-thread</h3>
+                        <p>Seguindo o mesmo exemplo acima, é uma boa prática manter o que é assíncrono separado do que é
+                            síncrono, para não forçar um método a ser ou não assíncrono por conta de outro trecho de
+                            código.</p>
+                        <h4 id="exemplo-3">Exemplo</h4>
+                        <pre><code class="language-csharp">public async Task&lt;IEnumerable&lt;Model&gt;&gt; GetAsync()
+{
+    var model = new Model();
+    model.Courses = await _context.Courses.ToListAsync();
+    model.Tags = _context.Courses.ToList(); // Não async
+    
+    return model;
+}
+</code></pre>
+                        <h3 id="utilize-async-como-sufixo">Utilize Async como sufixo</h3>
+                        <p>Se um método é assíncrono, utilize sempre o sufixo <strong>async</strong> para identificá-lo.
+                        </p>
+                        <pre><code class="language-csharp">public async Task&lt;IEnumerable&lt;Model&gt;&gt; GetAsync()
+</code></pre>
+                        <h3 id="evite-configurações-desnecessárias">Evite configurações desnecessárias</h3>
+                        <p>Evite deixar configurações no sistema só por que alguém ainda não definiu como aquilo deve
+                            ser. Isto polui o código e traz uma complexidade desnecessária.</p>
+                        <h4 id="exemplo-4">Exemplo</h4>
+                        <pre><code class="language-csharp">public void ConfiguraUsoMySql() 
+{
+    // ainda não sabemos se vamos ou não suportar MySQL também
+    throw new NotImplementedException();
+}
+</code></pre>
+                        <h3 id="utilize-injeção-de-dependência">Utilize injeção de dependência</h3>
+                        <p>Sempre que possível utilize <a href="https://balta.io/blog/dependency-injection">injeção de
+                                dependência</a>, ele vai tornar seu código mais limpo e desacoplado.</p>
+                        <h4 id="exemplo-5">Exemplo</h4>
+                        <p><a href="https://www.youtube.com/watch?v=va9wX68lAfA" title="Dependency Injection"><img
+                                    src="https://img.youtube.com/vi/va9wX68lAfA/0.jpg" alt="Dependency Injection" /></a>
+                        </p>
+                        <h3 id="lei-de-demeter">Lei de Demeter</h3>
+                        <p>A Lei de Demeter (LoD) ou princípio do menor conhecimento é um princípio que prega os
+                            seguintes pontos.</p>
+                        <ul>
+                            <li>Cada unidade deve ter conhecimento limitado sobre outras unidades: apenas unidades
+                                próximas se relacionam.</li>
+                            <li>Cada unidade deve apenas conversar com seus amigos.</li>
+                            <li>Não fale com estranhos, apenas fale com seus amigos imediatos</li>
+                        </ul>
+                        <h4 id="exemplo-6">Exemplo</h4>
+                        <pre><code class="language-csharp">public class Order() 
+{ 
+    public Discount Discount { get; set; }
+}
+
+public class Discount() 
+{ 
+    public decimal Amount { get; set; }
+
+    public void Apply() { ... }
+}
+</code></pre>
+                        <p><small><strong>Mau exemplo</strong></small></p>
+                        <pre><code class="language-csharp">public class OrderHandler() 
+{
+    var order = new Order();
+    order.Discount.Apply(); // &lt;-
+}
+</code></pre>
+                        <p><small><strong>Bom exemplo</strong></small></p>
+                        <pre><code class="language-csharp">public class Order() 
+{ 
+    public Discount Discount { get; set; }
+
+    public void Place() 
+    {
+        Discount?.Apply();
+    }
+}
+
+public class OrderHandler() 
+{
+    var order = new Order();
+    order.Place();
+}
+</code></pre>
+                        <h2 id="regras-sobre-entendimento-do-código">Regras sobre entendimento do código</h2>
+                        <h3 id="seja-consistente">Seja consistente</h3>
+                        <p>Se você executa algo de uma forma, execute todo o resto desta mesma forma. Seja consistente
+                            na forma com que aplica o código. Siga sempre o padrão definido.</p>
+                        <h4 id="exemplo-7">Exemplo</h4>
+                        <pre><code class="language-csharp">// Codificando em inglês
+public class CustomerRepository { ... }
+
+// Agora mudou para &quot;portuglês&quot;
+public class ProdutoRepository { ... }
+
+// Agora é português
+public class RepositorioUnidadeMedida { ... }
+</code></pre>
+                        <pre><code class="language-csharp">// Utilizou sufixo ASYNC no método assíncrono
+public async Task&lt;Product&gt; GetAsync() { ... }
+
+// Agora não usou mais =/
+public async Task&lt;Course&gt; Get() { ... }
+</code></pre>
+                        <h3 id="utilize-variáveis-concisas">Utilize variáveis concisas</h3>
+                        <p>Opte por variáveis concisas, mesmo que resultem em um nome maior. Elas devem ser
+                            auto-explicativas, sem a necessidade de comentários ou informações adicionais.</p>
+                        <h4 id="exemplo-8">Exemplo</h4>
+                        <pre><code class="language-csharp">// Total do que?
+decimal total = 0;
+
+// Total do carrinho de compras
+decimal shoppingCartTotal = 0;
+</code></pre>
+                        <h3 id="obsessão-primitiva">Obsessão primitiva</h3>
+                        <p>No dia-a-dia tendemos a nos focar apenas em tipos primitivos (Built-in), causando uma
+                            obsessão pelos mesmos. Podemos criar e usar objetos de valor (Value Objects) para suprir
+                            melhor esta necessidade.</p>
+                        <h4 id="exemplo-9">Exemplo</h4>
+                        <p><small><strong>Mau exemplo</strong></small></p>
+                        <pre><code class="language-csharp">public class Customer 
+{
+    public string Email { get; set; }
+
+    public Customer 
+    {
+        // Valida E-mail
+    }
+}
+
+public class Employee 
+{
+    public string Email { get; set; }
+
+    public Customer 
+    {
+        // Valida E-mail novamente
+    }
+}
+</code></pre>
+                        <p><small><strong>Bom exemplo</strong></small></p>
+                        <pre><code class="language-csharp">// Value Object
+public class Email 
+{
+    public string Address { get; set; }
+
+    public Email 
+    {
+        // Valida E-mail
+    }
+}
+
+public class Customer 
+{
+    public Email Email { get; set; }
+}
+
+public class Employee 
+{
+    public Email Email { get; set; }
+}
+</code></pre>
+                        <h3 id="evite-dependências-lógicas">Evite dependências lógicas</h3>
+                        <p>Não escreva métodos cujo funcionamento correto dependa de algo contido em sua classe.</p>
+                        <h4 id="exemplo-10">Exemplo</h4>
+                        <p><small><strong>Mau exemplo</strong></small></p>
+                        <pre><code class="language-csharp">public class Student 
+{
+    public bool IsSubscriber { get; set; }
+
+    public void Xpto() 
+    {
+        if(IsSubscriber)
+            ... // Só executa se for assinante   
+    }
+}
+</code></pre>
+                        <p><small><strong>Bom exemplo</strong></small></p>
+                        <pre><code class="language-csharp">public class Student 
+{
+    ...
+}
+
+public class Subscriber : Student
+{
+    public void Xpto() 
+    {
+        ...        
+    }
+}
+</code></pre>
+                        <h3 id="evite-condicionais-negativas">Evite condicionais negativas</h3>
+                        <p>No C# a negação é dada por um sinal de exclamação (<strong>!</strong>) que muitas vezes pode
+                            ser imperceptível, ocasionando na má leitura do código.</p>
+                        <h4 id="exemplo-11">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+if(!IsSubscriber) { ... }
+
+// Utilize
+if(IsSubscriber) { ... }
+</code></pre>
+                        <h2 id="regras-de-nomes">Regras de nomes</h2>
+                        <h3 id="escolha-nomes-descritivos">Escolha nomes descritivos</h3>
+                        <p>Esolher bons nomes para classes, variáveis e métodos é essencial para um código limpo.
+                            Lembre-se que se você precisa explicar seu código, então algo pode ser melhorado nele.</p>
+                        <h4 id="exemplo-12">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+var x = 256;
+
+// Duração do que? Qual a métrica?
+int duration = 25;
+
+// Muito mais expressivo
+int durationInMinutes = 25;
+</code></pre>
+                        <h3 id="faça-distinções-significantes">Faça distinções significantes</h3>
+                        <p>Utilize sempre nomes nos quais quem estiver lendo seu código possa diferenciar seu
+                            significado de outros possíveis nomes.</p>
+                        <h4 id="exemplo-13">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+var salario = 7500M;
+
+// Tem um significado maior
+var salarioEmReais = 7500M;
+</code></pre>
+                        <h3 id="utilize-nomes-pronunciáveis-e-buscáveis">Utilize nomes pronunciáveis e buscáveis</h3>
+                        <p>Evite utilizar nomes difíceis de pronunciar ou inventar nomes e conveções para variáveis,
+                            classes e métodos. Lembre-se sempre da linguagem ubíquoa e da importância dela no código.
+                        </p>
+                        <h4 id="exemplo-14">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+var strTexto = &quot;Meu texto aqui&quot;;
+
+// Evite
+public void GenerateBoletoInLote() {}
+
+// Evite
+public void Cadastry() {}
+</code></pre>
+                        <h3 id="evite-uso-excessivo-de-strings">Evite uso excessivo de strings</h3>
+                        <p>Quem nunca perdeu horas procurando um BUG que era apenas um problema de comparação de string?
+                            Evite digitar a mesma string várias vezes, utilize constantes para isto.</p>
+                        <h4 id="exemplo-15">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+if(environment == &quot;PROD&quot;)
+    ...
+
+// Utilize
+const string ENV = &quot;PROD&quot;;
+
+if(environment == ENV)
+    ...
+</code></pre>
+                        <h3 id="não-use-prefixo-ou-caracteres-especiais">Não use prefixo ou caracteres especiais</h3>
+                        <p>Não utilize prefixo com o tipo da variável, classe ou método e NUNCA use espaços ou
+                            caracteres especiais nestes itens.</p>
+                        <h4 id="exemplo-16">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+public class clsCustomer { ... }
+
+// Evite
+string strNome = &quot;André&quot;;
+
+// Evite
+var situação - &quot;Pendente&quot;;
+</code></pre>
+                        <h2 id="regras-para-funções-ou-métodos">Regras para funções ou métodos</h2>
+                        <h3 id="pequenas-e-com-apenas-um-objetivo">Pequenas e com apenas um objetivo</h3>
+                        <p>Mantenha suas funções ou métodos o menor possível. É mais fácil ter métodos menores e
+                            reutilizáveis do que tudo dentro de um método só.</p>
+                        <h4 id="exemplo-17">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+public void RealizarPedido() 
+{ 
+    // Cadastra o cliente
+    // Aplica o desconto
+    // Atualiza o estoque
+    // Salva o pedido
+}
+
+// Utilize
+public void SaveCustomer() { ... }
+public void ApplyDiscount() { ... }
+public void UpdateInventoy() { ... }
+public void PlaceOrder() { ... }
+</code></pre>
+                        <h3 id="utilize-nomes-descritivos">Utilize nomes descritivos</h3>
+                        <p>A mesma regra dos nomes anteriormente vista aqui se aplica para este cenário. Mantenha nomes
+                            concisos, sem caracteres especiais.</p>
+                        <h4 id="exemplo-18">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+// Calcular o que?
+public void Calcular() { ... }
+
+// Utilize
+// Calcula o ICMS
+public void CalcularICMS() { ... }
+</code></pre>
+                        <h3 id="opte-por-poucos-parâmetros">Opte por poucos parâmetros</h3>
+                        <p>Evite exigir muitos parâmetros para construção do objeto, assim como use e abuse dos
+                            <strong>Optional Parameters</strong> do C#.
+                        </p>
+                        <h4 id="exemplo-19">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+public void SaveCustomer(string street, string number, string neighborhood, string city, string state, string country, string zipCode) { ... }
+
+// Melhorando
+public void SaveCustomer(Address address) { ... }
+</code></pre>
+                        <h3 id="cuidado-com-efeitos-colaterais">Cuidado com efeitos colaterais</h3>
+                        <p>Evite que uma função altere valores de outra classe sem ser a dela. Isto é chamado de efeito
+                            colateral.</p>
+                        <h4 id="exemplo-20">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+public class Order 
+{
+    public decimal Total { get; set; }
+}
+
+var order = new Order();
+
+// Qualquer um fora da classe Order 
+// pode atualizar seu total
+order.Total = 250; 
+</code></pre>
+                        <pre><code class="language-csharp">// Utilize
+public class Order 
+{
+    public decimal Total { get; private set; }
+
+    public void CalculateTotal() { ... }
+}
+
+var order = new Order();
+
+// Total é privado, ninguém de fora consegue 
+// modificá-lo, evitando efeitos colaterais
+order.Total = 250; // ERRO
+</code></pre>
+                        <h3 id="não-tome-decisões-desnecessárias">Não tome decisões desnecessárias</h3>
+                        <p>Não utilize os famosos &quot;flags&quot; para tomar decisões dentro dos métodos, divida-os em
+                            vários métodos ou até mesmo outras classes.</p>
+                        <h4 id="exemplo-21">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+public class CustomerRepository 
+{
+    public void CreateOrUpdate(Customer customer, bool create)
+    {
+        if(create)
+            ...
+        else
+            ...
+    }
+}
+</code></pre>
+                        <pre><code class="language-csharp">// Utilize
+public class CustomerRepository 
+{
+    public void Create(Customer customer) { ... }
+    public void Update(Customer customer) { ... }
+}
+</code></pre>
+                        <h2 id="regras-de-comentários">Regras de comentários</h2>
+                        <h3 id="um-código-bom-é-expressivo">Um código bom é expressivo</h3>
+                        <p>Teoricamente, se você precisa comentar uma parte do seu código, é por que algo está errado
+                            com ele, ele não está expressivo o suficiente.</p>
+                        <h3 id="não-seja-redundante">Não seja redundante</h3>
+                        <p>Evite comentários que não fazem sentido algum ao contexto ou cenário.</p>
+                        <h4 id="exemplo-22">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+
+// Função principal do sistema
+public void Main() { ... }
+</code></pre>
+                        <h3 id="não-feche-os-comentários">Não feche os comentários</h3>
+                        <p>Não há necessidade de fechar os comentários.</p>
+                        <h4 id="exemplo-23">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+
+// Comentário // &lt;- Desnecessário
+public void Main() { ... }
+</code></pre>
+                        <h3 id="evite-códigos-comentados">Evite códigos comentados</h3>
+                        <p>Não deixe sujeira em seu código, ao invés de deixar algo comentado, remova ele. Hoje temos
+                            versionadores de código, você pode &quot;voltar no tempo&quot; facilmente.</p>
+                        <h4 id="exemplo-24">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+public void MinhaFuncao() 
+{ 
+    // string texto = &quot;1234&quot;;
+    // public void Metodo() {... }
+}
+</code></pre>
+                        <h3 id="inteção">Inteção</h3>
+                        <p>Um bom uso de comentários é sobre a intenção de um método, classe ou variável (Variável nem
+                            tanto).</p>
+                        <h4 id="exemplo-25">Exemplo</h4>
+                        <pre><code class="language-csharp">// Utilize
+
+// Retorna a lista de produtos inativos
+// para o relatório de fechamento mensal
+public IList&lt;Product&gt; ObtemProdutosInativos() 
+{ 
+    ...
+}
+</code></pre>
+                        <h3 id="esclarecimento">Esclarecimento</h3>
+                        <p>Outro uso interessante para os comentários são esclarecimentos sobre o código.</p>
+                        <h4 id="exemplo-26">Exemplo</h4>
+                        <pre><code class="language-csharp">// Utilize
+public void CancelarPedido() 
+{ 
+    // Caso o pedido já tenha sido enviado
+    // ele não pode mais ser cancelado.
+    if(DataEnvio &gt; DateTime.Now)
+    {
+        AddNotification(&quot;O pedido já foi enviado e não pode ser cancelado&quot;);
+    }
+}
+</code></pre>
+                        <h3 id="consequências">Consequências</h3>
+                        <p>Podemos utilizar comentários para alertar sobre trechos do código que podem ter consequências
+                            mais sérias. Neste caso recomendo o uso de um comentário em XML mais elaborado.</p>
+                        <h4 id="exemplo-27">Exemplo</h4>
+                        <pre><code class="language-csharp">// Utilize
+
+/// &lt;summary&gt;
+/// ATENÇÃO: Este método cancela o pedido e estorna o pagamento
+/// &lt;/summary&gt;
+public void CancelarPedido() 
+{ 
+    ...
+}
+</code></pre>
+                        <h2 id="estrutura-do-código">Estrutura do código</h2>
+                        <h3 id="separe-conceitos-verticalmente">Separe conceitos verticalmente</h3>
+                        <p>Mantenha uma estrutura de pastas saudável e organizada. Não precisa criar uma pasta para cada
+                            arquivo, mas pode haver uma separação por contexto ou feature.</p>
+                        <h4 id="exemplo-28">Exemplo</h4>
+                        <ul>
+                            <li>MeuApp
+                                <ul>
+                                    <li>MeuApp.Domain
+                                        <ul>
+                                            <li>MeuApp.Domain.Contexts
+                                                <ul>
+                                                    <li>MeuApp.Domain.Contexts.PaymentContext
+                                                        <ul>
+                                                            <li>MeuApp.Domain.Contexts.PaymentContexts.Entities</li>
+                                                            <li>MeuApp.Domain.Contexts.PaymentContexts.ValueObjects</li>
+                                                            <li>MeuApp.Domain.Contexts.PaymentContexts.Enums</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>MeuApp.Domain.Contexts.AccountContext
+                                                        <ul>
+                                                            <li>MeuApp.Domain.Contexts.AccountContext.Entities</li>
+                                                            <li>MeuApp.Domain.Contexts.AccountContext.ValueObjects</li>
+                                                            <li>MeuApp.Domain.Contexts.AccountContext.Enums</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <h3 id="declare-variáveis-próximas-de-seu-uso">Declare variáveis próximas de seu uso</h3>
+                        <p>Não crie todas as variáveis juntas, no começo da class ou método, defina-as próximas de onde
+                            serão utilizadas.</p>
+                        <h4 id="exemplo-29">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+var total = 0;
+
+public void CreateCustomer() { ... }
+
+public void CreateOrder() { ... }
+
+public void UpdateCustomer() { ... }
+
+public void CalculateTotal() 
+{ 
+    total = 250; // &lt;- Só é utilizada aqui
+}
+</code></pre>
+                        <pre><code class="language-csharp">// Utilize
+public void CreateCustomer() { ... }
+
+public void CreateOrder() { ... }
+
+public void UpdateCustomer() { ... }
+
+var total = 0;
+public void CalculateTotal() 
+{ 
+    total = 250;
+}
+</code></pre>
+                        <h3 id="agrupe-funcionalidades-similares">Agrupe funcionalidades similares</h3>
+                        <p>Se uma função pertence a um grupo dentro de um objeto, mantenha-as sempre por perto.</p>
+                        <h4 id="exemplo-30">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+public void CreateCustomer() { ... } 
+
+public void CheckInventory() { ... }
+
+public void CreateOrder() { ... }
+
+public void UpdateCustomer() { ... }
+
+public void CalculateTotal() { .. }
+</code></pre>
+                        <pre><code class="language-csharp">// Utilize
+public void CreateCustomer() { ... } 
+public void UpdateCustomer() { ... }
+
+public void CheckInventory() { ... }
+public void CreateOrder() { ... }
+public void CalculateTotal() { .. }
+</code></pre>
+                        <h3 id="declare-funções-de-cima-para-baixo">Declare funções de cima para baixo</h3>
+                        <p>Ordenar as funções também é importante. Além da sua ordem de grandeza, suas assinaturas
+                            também devem ter uma boa oganização.</p>
+                        <h4 id="exemplo-31">Exemplo</h4>
+                        <pre><code class="language-csharp">// Utilize
+public void CreateCustomer(string name) { ... } 
+
+public void CreateCustomer(string name, int age) { ... } 
+
+public void CreateCustomer(string name, int age, Address address) { ... } 
+
+public void CreateCustomer(string name, int age, Address address, bool active) { ... } 
+</code></pre>
+                        <h3 id="mantenha-poucas-e-curtas-linhas">Mantenha poucas e curtas linhas</h3>
+                        <p>Evite funções com linhas longas ou muitas linhas. Não existe um número correto, mas com
+                            certeza quanto mais código em uma função, mais difícil de mantê-la será.</p>
+                        <h4 id="exemplo-32">Exemplo</h4>
+                        <pre><code class="language-csharp">// Utilize
+public void CreateCustomer(string name) 
+{ 
+    var customer = new Customer(name);
+    _repository.Customers.Add(customer);
+    _repository.SaveChanges();
+} 
+</code></pre>
+                        <h3 id="não-use-alinhamento-horizontal">Não use alinhamento horizontal</h3>
+                        <p>Não há necessidade de alinhar horizontalmente variáveis, constantes ou mesmo propriedades.
+                        </p>
+                        <h4 id="exemplo-33">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+private   Long            requestParsingTimeLimit;
+protected Request         request;
+private   FitNesseContent context;
+this.context =            context;
+input =                   s.getInputStream()
+requestParsingTimeLimit = 900;
+</code></pre>
+                        <h3 id="use-os-espaços-em-branco-corretamente">Use os espaços em branco corretamente</h3>
+                        <p>Utilize espaço em branco para associar ou não itens relacionados. Uma boa IDE já fará este
+                            trabalho por você.</p>
+                        <h4 id="exemplo-34">Exemplo</h4>
+                        <pre><code class="language-csharp">// Utilize
+private void meuMetodo(String parametro) {
+  variavel++;
+  int outraVariavel = algumArray.length();
+  total += algumMetodo();
+  outraClasse.algumMetodo(variavel, total);
+  outroMetodo(total);
+}
+</code></pre>
+                        <h3 id="não-quebre-a-identação">Não quebre a identação</h3>
+                        <p>Este item dispensa comentários. Um código não identado não pode ser enviado para o projeto.
+                        </p>
+                        <h4 id="exemplo-35">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+public class MinhaClasse{
+var valor=12;
+Console.WriteLine(valor);
+}
+</code></pre>
+                        <h2 id="objetos-e-estruturas">Objetos e estruturas</h2>
+                        <h3 id="esconda-estruturas-internas">Esconda estruturas internas</h3>
+                        <p>Este tópico abrange uma discussão extensa. Esconder a estrutura de um objeto, ou seja, privar
+                            as propridades relacioadas a dados dele, vai sempre trazer resultados positivos e negativos.
+                        </p>
+                        <p>Particularmente, gosto de tornar os <code>SET</code> privados, mas não é uma regra do meu
+                            código e não aplico em todas as propriedades. Como consequência, sempre precisamos de mais
+                            métodos para manipulação destes valores.</p>
+                        <p>Se os dados não fazem sentido para os objetos externos, não há discussão, mantenha-os
+                            privados.</p>
+                        <h4 id="exemplo-36">Exemplo</h4>
+                        <pre><code class="language-csharp">public class NotificationContext
+{
+    private List&lt;string&gt; _notifications;
+
+    public void Add(string notification) 
+    {
+        _notifications.Add(notification);
+    }
+
+    public bool IsValid() =&gt; _notifications.Any();
+
+    public IEnumerable Notifications { get =&gt; _notifications.AsEnumerable(); }
+}
+</code></pre>
+                        <h3 id="opte-por-estrutura-de-dados">Opte por estrutura de dados</h3>
+                        <p>Estruturas de dados representam a forma como os dados são organizados, podendo ser uma
+                            <code>class</code> ou um <code>struct</code>. Normalmente associamos as <code>struct</code>
+                            mais a estrutura de dados do que as classes, mas podemos estruturar dados com qualquer uma
+                            delas.
+                        </p>
+                        <p>A diferença é que ao usar <code>class</code> (OOP) temos recursos como abstração, herança,
+                            polimorfismo, dentre outros.</p>
+                        <p>Particularmente acho que a segmentação em objetos de valor é um ponto chave neste item.</p>
+                        <h4 id="exemplo-37">Exemplo</h4>
+                        <pre><code class="language-csharp">// Usando estruturas
+public struct Email 
+{
+    public Email(string address) 
+    { 
+        // Permite apenas E-mails hotmail, gmail, yahoo...
+    }
+
+    public string Address { get; private set; }
+}
+
+public class Customer
+{
+    public Email Email { get; private set; }
+}
+</code></pre>
+                        <pre><code class="language-csharp">// Usando classes
+public class Email 
+{
+    public Email(string address) 
+    { 
+        // Permite qualquer tipo de E-mail
+    }
+
+    public string Address { get; private set; }
+}
+
+public class CommonEmail : Email
+{
+    public Email(string address) 
+        : base(address)
+    { 
+        // Permite apenas E-mails hotmail, gmail, yahoo...
+    }        
+}
+
+public class Customer
+{
+    public Email Email { get; private set; }
+}
+</code></pre>
+                        <blockquote>
+                            <p>Nos dois casos temos estruturas representando um E-mail como objeto de valor, porém no
+                                segundo cenário, podemos criar extensões e ter uma maior flexibilidade.</p>
+                        </blockquote>
+                        <h3 id="evite-usar-dados-e-objetos-juntos">Evite usar dados e objetos juntos</h3>
+                        <p>Este é outro ponto polêmico que muitos interpretam como manter nos objetos apenas
+                            propriedades enquanto seus comportamentos ficam em outros objetos.</p>
+                        <p>Particularmente acho que a essência de um objeto é justamente o agrupamento de variáveis e
+                            funções (Propriedades e métodos). Neste ponto eu sempre mantenho os comportamentos nas
+                            entidades.</p>
+                        <p>Em relação a manter parte com <code>object</code> e parte com <code>struct</code> eu confesso
+                            que a maior parte dos meus casos eu uso apenas o <code>object</code>. Pode ser vício ou puro
+                            comodismo, mas acho estranho esta mistura.</p>
+                        <p>Talvez uma abordagem que aplique estes conceitos de uma forma legal seja novamente o uso dos
+                            <strong>value objects</strong>.
+                        </p>
+                        <pre><code class="language-csharp">// Objeto de valor, representa um endereço, sua estrutura de dados
+public class Address
+{
+    public string ZipCode { get; set; }
+    public string Street { get; set; }
+    public string Number { get; set; }
+    public string Neighborhood { get; set; }
+    public string City { get; set; }
+    public string State { get; set; }
+    public string Country { get; set; }
+}
+
+// Objeto do cliente... com seus comportamentos
+public class Customer
+{
+    public Address BillingAddress { get; private set; }
+    public Address ShippingAddress { get; private set; }
+
+    public void ChangeBillingAddress(Address address) { ... }
+    public void ChangeShippingAddress(Address address) { ... }
+}
+</code></pre>
+                        <h3 id="instanciar-poucas-variáveis">Instanciar poucas variáveis</h3>
+                        <p>Evite instanciar muitas variáveis nos objetos e seus métodos. Faz uso maior das propriedades
+                            se possível.</p>
+                        <h4 id="exemplo-38">Exemplo</h4>
+                        <pre><code class="language-csharp">public class ShoppingCart
+{
+    public decimal Total { get; private set; }
+
+    public decimal CalculateTotal()
+    {
+        var total = 0; // Desnecessário
+        foreach(var item in Items)
+            total += item.Price;
+    }
+}
+</code></pre>
+                        <pre><code class="language-csharp">// Melhorando
+public class ShoppingCart
+{
+    public decimal Total { get; private set; }
+
+    private decimal CalculateTotal()
+    {        
+        foreach(var item in Items)
+            Total += item.Price;
+    }
+}
+</code></pre>
+                        <h3 id="classe-base-não-deve-saber-sobre-suas-derivadas">Classe base não deve saber sobre suas
+                            derivadas</h3>
+                        <p>Uma classe não deve saber sobre detalhes dos seus filhos. Nas verdade isto me soa tão
+                            estranho que não vejo um cenário onde uma classe pai consiga saber detalhes de seus filhos.
+                        </p>
+                        <h4 id="exemplo-39">Exemplo</h4>
+                        <pre><code class="language-csharp">// N/A
+</code></pre>
+                        <h3 id="mais-métodos-menos-tomadas-de-decisão">Mais métodos, menos tomadas de decisão</h3>
+                        <p>Já comentamos bastante isto na parte de OOP dos cursos, mas fica aqui o reforço, sempre opte
+                            por ter mais métodos, mais sobrecargas do que tomadas de decisão.</p>
+                        <h4 id="exemplo-40">Exemplo</h4>
+                        <pre><code class="language-csharp">// Evite
+public class Order
+{
+    public void Pay(CreditCard card)
+    {
+        if(card == null)
+            // Pagamento via boleto
+
+        // Pagamento via cartão
+    }
+}
+</code></pre>
+                        <pre><code class="language-csharp">// Utilize
+public class Order
+{
+    public void Pay()
+    {
+        // Pagamento via boleto
+    }
+
+    public void Pay(CreditCard card)
+    {
+        // Pagamento via cartão de crédito
+    }
+}
+</code></pre>
+                        <h3 id="evite-métodos-estáticos">Evite métodos estáticos</h3>
+                        <p>Classes e métodos estáticos são difíceis de gerenciar, além de serem compartilhados entre a
+                            aplicação como um todo. Imagina que você tem uma classe estática que tem uma lista de
+                            notificações, esta lista seria compartilhada entre todas as requisições (Diversos usuários)
+                            em seu sistema.</p>
+                        <pre><code class="language-csharp">// Evite
+public static class NotificationContext
+{
+    public static IList&lt;Notification&gt; Notifications { get; set;}
+}
+</code></pre>
+                        <pre><code class="language-csharp">// Utilize
+public class NotificationContext
+{
+    public IList&lt;Notification&gt; Notifications { get; set;}
+}
+</code></pre>
+                        <h2 id="testes">Testes</h2>
+                        <h3 id="um-assert-por-teste">Um assert por teste</h3>
+                        <p>Utilize um e apenas um <code>assert</code> por teste. Mais de um assert pode confundir você e
+                            comprometer a escrita do seu teste.</p>
+                        <pre><code class="language-csharp">// Evite
+[TestMethod]
+public void ShouldReturnTrue 
+{
+    Assert.AreEqual(true);
+    Assert.AreEqual(1);
+}
+</code></pre>
+                        <pre><code class="language-csharp">// Utilize
+[TestMethod]
+public void ShouldReturnTrue 
+{
+    Assert.AreEqual(true);
+}
+</code></pre>
+                        <h3 id="legível">Legível</h3>
+                        <p>Trate seus testes como parte fundamental do seu código, não secundária. Os testes tem que ser
+                            organizados e bem escritos assim como o resto do seu software.</p>
+                        <h4 id="exemplo-41">Exemplo</h4>
+                        <pre><code class="language-csharp">// N/A
+</code></pre>
+                        <h3 id="rápido">Rápido</h3>
+                        <p>Um dos objetivos principais de um teste é cobrir uma pequena porção do nosso código.
+                            Normalmente estendemos esta ideia para a maior parte do código possível, ocasionando uma
+                            ampla gama de testes de unidade.</p>
+                        <p>Dados estes testes, os mesmo são executados antes da publicação das nossas aplicações,
+                            garantindo que não enviaremos nada com bugs para produção.</p>
+                        <p>Porém, em cenários mais críticos, o tempo dos deploys (Publicações) é extremamente
+                            importante, e se nossos testes demoram muito, podem impactar negativamente nisto.</p>
+                        <h4 id="exemplo-42">Exemplo</h4>
+                        <pre><code class="language-csharp">// N/A
+</code></pre>
+                        <h3 id="independentes">Independentes</h3>
+                        <p>Os testes não devem depender de entidades externas, nem de outros testes. Neste exemplo,
+                            volto a salientar o uso do DI e DIP.</p>
+                        <h4 id="exemplo-43">Exemplo</h4>
+                        <p><a href="https://www.youtube.com/watch?v=va9wX68lAfA" title="Dependency Injection"><img
+                                    src="https://img.youtube.com/vi/va9wX68lAfA/0.jpg" alt="Dependency Injection" /></a>
+                        </p>
+                        <h3 id="repetitível">Repetitível</h3>
+                        <p>Devemos ter a possibilidade de repetir o mesmo teste, mas com parâmetros diferentes.</p>
+                        <h4 id="exemplo-44">Exemplo</h4>
+                        <pre><code class="language-csharp">[TestMethod]
+[DataRow(&quot;email@valido.com&quot;, &quot;email@balta.io&quot;)]
+public void ShouldValidateEmail(string email)
+{
+    Assert.IsTrue(new Email(email).IsValid());
+}
+</code></pre>
+                        <h2 id="code-smells">Code smells</h2>
+                        <p>Code Smells são alguns sintomas que podemos identificar e que nos remetem a uma má aplicação
+                            do Clean Code de uma forma geral.</p>
+                        <h3 id="rigidez">Rigidez</h3>
+                        <p>Seu software é difícil de mudar. Qualquer mudança, por mínima que seja, causa uma cascata de
+                            outras mudanças.</p>
+                        <h3 id="fragilidade">Fragilidade</h3>
+                        <p>Uma simples mudança quebra seu software em diversos locais. É o famosos &quot;cobre o pé,
+                            descobre a cabeça&quot;.</p>
+                        <h3 id="imobilidade">Imobilidade</h3>
+                        <p>Você não consegue reutilizar partes do seu código em outros projetos por que isto requer um
+                            esforço gigantes. Em resumo, tudo está muito acoplado.</p>
+                        <h3 id="complexidade-desnecessária">Complexidade desnecessária</h3>
+                        <p>Você usa padrões e arquiteturas que tornam seu código mais burocrático do que efetivo. É o
+                            famoso &quot;e se&quot;, onde pensamos em tudo que o software pode ter um dia e já
+                            &quot;deixamos tudo pronto&quot;.</p>
+                        <p>&quot;E se eu quiser voar com meu carro um dia?&quot;, bem, se um dia você quiser voar, aí
+                            você constrói as asas, mas se não vai precisar voar agora, foca em construir apenas o carro.
+                        </p>
+                        <h3 id="repetição-desnecessária">Repetição desnecessária</h3>
+                        <p>Você precisa repetir o mesmo código em diversos lugares.</p>
+                        <h3 id="opacidade">Opacidade</h3>
+                        <p>Seu código é difícil de entender.</p>
+                        <h2 id="fontes">Fontes</h2>
+                        <ul>
+                            <li><a href="https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29">Post em
+                                    Inglês</a></li>
+                            <li><a
+                                    href="https://www.amazon.com.br/Clean-Code-Handbook-Software-Craftsmanship-ebook/dp/B001GSTOAM">Livro
+                                    Clean Code</a></li>
+                        </ul>
+                        <div role="main" id="blog-s1-clean-code-a64fc4d3ec431e108e34"></div>
+                        <script type="text/javascript"
+                            src="https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"></script>
+                        <script
+                            type="text/javascript"> new RDStationForms('blog-s1-clean-code-a64fc4d3ec431e108e34', 'UA-48664517-12').createForm();</script>
+
+
+                    </article>
+                </div>
+                <div class="uk-width-1-2@s uk-width-1-3@l">
+                    <div
+                        class="uk-card uk-card-default uk-card-body uk-flex uk-flex-column uk-flex-middle border-fullstack">
+                        <h4 class="uk-padding-remove uk-margin-remove">Premium semestral</h4>
+                        <p class="uk-padding-remove uk-margin-remove uk-text-center">Compra única, parcelada em
+                            até<br>12x no cartão de crédito</p>
+                        <br>
+                        <div class="uk-flex uk-flex-row uk-margin-top uk-margin-bottom">
+                            <div class="uk-flex uk-flex-column uk-flex-top uk-text-right uk-margin-small-right">
+                                <strong>12x</strong>
+                                <span>R$</span>
+                            </div>
+                            <div>
+                                <h3 class="uk-heading-large">33</h3>
+                            </div>
+                            <div class="uk-flex uk-flex-column uk-flex-start uk-flex-left uk-margin-small-left">
+                                <h2 class="uk-padding-remove uk-margin-remove">,33</h2>
+                                <span>=R$ 399,90</span>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-1-1">
+                            <ul class="uk-list">
+                                <li><span
+                                        class="uk-text-secondary uk-text-bolder uk-margin-large-left@s uk-margin-right"
+                                        uk-icon="icon: check; ratio: 1"></span>6 meses de acesso</li>
+                                <li><span
+                                        class="uk-text-secondary uk-text-bolder uk-margin-large-left@s uk-margin-right"
+                                        uk-icon="icon: check; ratio: 1"></span>Acesso à todo conteúdo</li>
+                                <li><span
+                                        class="uk-text-secondary uk-text-bolder uk-margin-large-left@s uk-margin-right"
+                                        uk-icon="icon: check; ratio: 1"></span>Emissão de Certificado</li>
+                                <li><span
+                                        class="uk-text-secondary uk-text-bolder uk-margin-large-left@s uk-margin-right"
+                                        uk-icon="icon: check; ratio: 1"></span>Tira Dúvidas Online</li>
+                                <li><span
+                                        class="uk-text-secondary uk-text-bolder uk-margin-large-left@s uk-margin-right"
+                                        uk-icon="icon: check; ratio: 1"></span>53 cursos disponíveis</li>
+                                <li><span
+                                        class="uk-text-secondary uk-text-bolder uk-margin-large-left@s uk-margin-right"
+                                        uk-icon="icon: check; ratio: 1"></span>4 carreiras disponíveis</li>
+                                <li><span
+                                        class="uk-text-secondary uk-text-bolder uk-margin-large-left@s uk-margin-right"
+                                        uk-icon="icon: check; ratio: 1"></span>161 temas de tecnologia</li>
+                                <li><span
+                                        class="uk-text-secondary uk-text-bolder uk-margin-large-left@s uk-margin-right"
+                                        uk-icon="icon: check; ratio: 1"></span>Conteúdo novo todo mês</li>
+                                <li>
+                                    <span
+                                        class="uk-text-secondary uk-text-bolder uk-margin-large-left@s uk-margin-right"
+                                        uk-icon="icon: check; ratio: 1"></span><a href="">Encontros Premium</a>
+                                </li>
+                                <li><span
+                                        class="uk-text-secondary uk-text-bolder uk-margin-large-left@s uk-margin-right"
+                                        uk-icon="icon: check; ratio: 1"></span>7 dias para arrependimento</li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a class="uk-button uk-button-primary uk-width-1-1"
+                            href="https://balta.io/checkout/semestral?utm_source=github&utm_medium=social&utm_campaign=none">Começar
+                            agora</a>
+                        <p>
+                            <a
+                                href="https://balta.io/politicas/privacidade?utm_source=github&utm_medium=social&utm_campaign=none">Política
+                                de privacidade</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <br>
+        <br>
+
+    </main>
+
+    <script src="https://baltaio.blob.core.windows.net/static/js/uikit.min.js?v1"></script>
+    <script src="https://baltaio.blob.core.windows.net/static/js/uikit-icons.min.js?v1"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48664517-12"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-48664517-12');
+    </script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/dracula.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
