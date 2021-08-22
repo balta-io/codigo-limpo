@@ -509,7 +509,7 @@ if(IsSubscriber) { ... }
 
 ### Escolha nomes descritivos
 
-Esolher bons nomes para classes, variáveis e métodos é essencial para um código limpo. Lembre-se que se você precisa explicar seu código, então algo pode ser melhorado nele.
+Escolher bons nomes para classes, variáveis e métodos são essenciais para um código limpo. Lembre-se que se você precisa explicar seu código, então algo pode ser melhorado nele.
 
 #### Exemplo
 ```csharp
@@ -525,7 +525,7 @@ int durationInMinutes = 25;
 
 ### Faça distinções significantes
 
-Utilize sempre nomes nos quais quem estiver lendo seu código possa diferenciar seu significado de outros possíveis nomes.
+Utilize sempre nomes nos quais quem estiver lendo seu código possa diferenciar seus significados em comparação à outros possíveis nomes.
 
 #### Exemplo
 ```csharp
@@ -584,7 +584,7 @@ public class clsCustomer { ... }
 string strNome = "André";
 
 // Evite
-var situação - "Pendente";
+var situação = "Pendente";
 ```
 
 ## Regras para funções ou métodos
@@ -754,9 +754,9 @@ public void MinhaFuncao()
 }
 ```
 
-### Inteção
+### Intenção
 
-Um bom uso de comentários é sobre a intenção de um método, classe ou variável (Variável nem tanto).
+Um bom uso de comentários é sobre a intenção de um método, classe ou variável (variável nem tanto).
 
 #### Exemplo
 
@@ -781,7 +781,7 @@ Outro uso interessante para os comentários são esclarecimentos sobre o código
 // Utilize
 public void CancelarPedido() 
 { 
-    // Caso o pedido já tenha sido enviado
+    // Caso o pedido já tenha sido enviado,
     // ele não pode mais ser cancelado.
     if(DataEnvio > DateTime.Now)
     {
@@ -1091,7 +1091,7 @@ public class Customer
 
 ### Instanciar poucas variáveis
 
-Evite instanciar muitas variáveis nos objetos e seus métodos. Faz uso maior das propriedades se possível.
+Evite instanciar muitas variáveis nos objetos e seus métodos. Faça maior uso das propriedades se possível.
 
 #### Exemplo
 ```csharp
@@ -1124,7 +1124,7 @@ public class ShoppingCart
 
 ### Classe base não deve saber sobre suas derivadas
 
-Uma classe não deve saber sobre detalhes dos seus filhos. Nas verdade isto me soa tão estranho que não vejo um cenário onde uma classe pai consiga saber detalhes de seus filhos.
+Uma classe não deve saber sobre detalhes dos seus filhos. Na verdade isto me soa tão estranho que não vejo um cenário onde uma classe pai consiga saber detalhes de seus filhos.
 
 #### Exemplo
 
@@ -1169,7 +1169,7 @@ public class Order
 
 ### Evite métodos estáticos
 
-Classes e métodos estáticos são difíceis de gerenciar, além de serem compartilhados entre a aplicação como um todo. Imagina que você tem uma classe estática que tem uma lista de notificações, esta lista seria compartilhada entre todas as requisições (Diversos usuários) em seu sistema.
+Classes e métodos estáticos são difíceis de gerenciar, além de serem compartilhados entre a aplicação como um todo. Imagina que você tem uma classe estática que tem uma lista de notificações, esta lista seria compartilhada entre todas as requisições (diversos usuários) em seu sistema.
 
 ```csharp
 // Evite
@@ -1225,7 +1225,7 @@ Um dos objetivos principais de um teste é cobrir uma pequena porção do nosso 
 
 Dados estes testes, os mesmo são executados antes da publicação das nossas aplicações, garantindo que não enviaremos nada com bugs para produção.
 
-Porém, em cenários mais críticos, o tempo dos deploys (Publicações) é extremamente importante, e se nossos testes demoram muito, podem impactar negativamente nisto.
+Porém, em cenários mais críticos, o tempo dos *deploys* (publicações) é extremamente importante, e se nossos testes demoram muito, podem impactar negativamente nisto.
 
 #### Exemplo
 
